@@ -1,6 +1,12 @@
 name: Build and Push Docker Images
 on:
-  [workflow_dispatch]
+  #[workflow_dispatch] to trigger workflow manually
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/Dockerfile'
+      - 'front-end-nextjs/Dockerfile'    #triggers workflow when changes are made to the Dockerfiles in the api and front-end-nextjs directories
 
 jobs:
   publish_images:
