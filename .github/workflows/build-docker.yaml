@@ -1,0 +1,20 @@
+name: Build and Push Docker Images
+on:
+  [workflow_dispatch]
+
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Build images
+        run: |
+          docker build  ./api/ -t akinace/qr-code-api:latest
+          docker build ./front-end-nextjs/ -t akinace/qr-code-frontend:latest
+      - name: push to DockerHub
+        run: |
+          docker login -u akinace -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+          docker push akinace/qr-code-api:latest
+          docker push akinace/qr-code-frontend:latest
