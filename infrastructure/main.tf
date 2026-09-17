@@ -85,5 +85,5 @@ module "eks" {
 #terraform apply to create the resources defined in the configuration files.
 #aws eks update-kubeconfig --region us-east-1 --name qr-code-generator  to configure kubectl to connect to the EKS cluster.
 #kubectl get nodes  to verify that the EKS cluster is up and running and the worker nodes are registered with the cluster.
-#kubectl cluster-info  to get the cluster information and verify that the Kubernetes API server is accessible.
+#kubectl cluster-info  to get the cluster information and verify that the cluster is accessible.
 #kubectl get pods --all-namespaces  to check the status of the pods running in the cluster, empty at this time.

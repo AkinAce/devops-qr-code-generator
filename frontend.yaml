@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment  
+metadata:
+  name: qr-frontend 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: qr-frontend 
+  template:
+    metadata:
+      labels:
+        app: qr-frontend  
+    spec:
+      containers:
+      - name: qr-frontend 
+        image: akinace/qr-code-frontend:latest
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: qr-frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: qr-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+
+      
+#kubectl apply -f frontend.yaml  to deploy the frontend application to the EKS cluster.     
+#Front end route changed from localhost:3000 to the LoadBalancer DNS name provided by AWS EKS after deployment.
+#Image rebuilt and pushed to DockerHub after making changes to the frontend application.
+#Deployment rollout restarted to pull the latest image from DockerHub and deploy the updated frontend application to the EKS cluster.   
+#Kubectl rollout restart deployment qr-frontend  

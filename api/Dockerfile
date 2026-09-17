@@ -21,6 +21,6 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 
 #docker build -t qr-code-api .
-#docker run -d --name qr-code-api -p 8000:80 qr-code-api
+#docker run -d --name qr-code-api -p 8000:80 qr-code-api      to run container locally if needed for testing purposes.
 #docker tag qr-code-api:latest akinace/qr-code-api:latest
 #docker push akinace/qr-code-api:latest
